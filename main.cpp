@@ -7,6 +7,8 @@ using namespace std;
 const int grid_width = 500, margin = 100;
 const int window_width = 2 * grid_width + 3 * margin, window_height = grid_width + 2 * margin;
 
+Vector2f cellSize(grid_width / 10, grid_width / 10);
+
 RenderWindow window(VideoMode(window_width, window_height), "Battleship");
 RectangleShape grid[10][10];
 
@@ -27,7 +29,6 @@ void show_battleship(/*int x_coordinate, int y_coordinate*/)
 
 void draw_gridlines(float x, float y)
 {
-    Vector2f cellSize(50.f, 50.f);
 
     for(int i=0;i<10;i++){
         for(int j=0;j<10;j++){
@@ -35,7 +36,7 @@ void draw_gridlines(float x, float y)
             grid[i][j].setOutlineColor(Color::Black);
             grid[i][j].setOutlineThickness(5.0f);
 
-            grid[i][j].setPosition(i*cellSize.x + 1.0f + x, j*cellSize.y + 1.0f + y);
+            grid[i][j].setPosition(i*cellSize.x + x, j*cellSize.y + y);
 
             window.draw(grid[i][j]);
         }
