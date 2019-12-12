@@ -12,13 +12,13 @@ void show_battleship(/*int x_coordinate, int y_coordinate*/)
 {
     ConvexShape convex;
     convex.setPointCount(5);
-    convex.setPoint(0,Vector2f(100.f,100.f));
-    convex.setPoint(1,Vector2f(400.f,100.f));
-    convex.setPoint(2,Vector2f(400.f,700.f));
-    convex.setPoint(3,Vector2f(250.f,850.f));
-    convex.setPoint(4,Vector2f(100.f,700.f));
+    convex.setPoint(0,Vector2f(200.f,100.f));
+    convex.setPoint(1,Vector2f(300.f,100.f));
+    convex.setPoint(2,Vector2f(300.f,300.f));
+    convex.setPoint(3,Vector2f(250.f,400.f));
+    convex.setPoint(4,Vector2f(200.f,300.f));
 
-    convex.setFillColor(Color::White);
+    convex.setFillColor(Color::Red);
 
         Event event;
         while (window.pollEvent(event))
@@ -55,6 +55,7 @@ void show_grid()
 
             }
         }
+
         show_battleship();
         window.display();
     }
