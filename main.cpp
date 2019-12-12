@@ -12,17 +12,56 @@ Vector2f cellSize(grid_width / 10, grid_width / 10);
 RenderWindow window(VideoMode(window_width, window_height), "Battleship");
 RectangleShape grid[10][10];
 
-void show_battleship(/*int x_coordinate, int y_coordinate*/)
+void show_battleship(int board_type, int x_coordinate, int y_coordinate,int orientation, int length)
 {
+    /*@ param
+    board_type: 0 if the first board, 1 if the second board
+    x_coordinate/y_coordinate: includes index 0 ; the value of the unit cell to start on the grid
+    orientation: how to orient the ship 1) north, 2) east, 3) south, 4) west
+    length: how long the ship is*/
+
     ConvexShape convex;
     convex.setPointCount(5);
-    convex.setPoint(0,Vector2f(100.f,100.f));
-    convex.setPoint(1,Vector2f(400.f,100.f));
-    convex.setPoint(2,Vector2f(400.f,700.f));
-    convex.setPoint(3,Vector2f(250.f,850.f));
-    convex.setPoint(4,Vector2f(100.f,700.f));
 
-    convex.setFillColor(Color::White);
+    int ini_x_point = margin+grid_width/10*x_coordinate;
+    int ini_y_point = margin+grid_width/10*y_coordinate;
+
+    //NOTE: NEED TO EDIT ORIENTATION 1, 2, and 4
+
+    if(orientation==1)
+    {
+        convex.setPoint(0,Vector2f(ini_x_point+(margin+grid_width)*board_type, ini_y_point));
+        convex.setPoint(1,Vector2f(ini_x_point+(margin+grid_width)*board_type+grid_width/10-5.0, ini_y_point));
+        convex.setPoint(2,Vector2f(ini_x_point+(margin+grid_width)*board_type+grid_width/10-5.0, ini_y_point+grid_width/10*length-grid_width/20-5));
+        convex.setPoint(3,Vector2f((ini_x_point+(margin+grid_width)*board_type+grid_width/10+ini_x_point+(margin+grid_width)*board_type)/2, ini_y_point+grid_width/10*length-5));
+        convex.setPoint(4,Vector2f(ini_x_point+(margin+grid_width)*board_type, ini_y_point+grid_width/10*length-grid_width/20-5));
+    }
+    if(orientation==2)
+    {
+        convex.setPoint(0,Vector2f(ini_x_point+(margin+grid_width)*board_type, ini_y_point));
+        convex.setPoint(1,Vector2f(ini_x_point+(margin+grid_width)*board_type+grid_width/10-5.0, ini_y_point));
+        convex.setPoint(2,Vector2f(ini_x_point+(margin+grid_width)*board_type+grid_width/10-5.0, ini_y_point+grid_width/10*length-grid_width/20-5));
+        convex.setPoint(3,Vector2f((ini_x_point+(margin+grid_width)*board_type+grid_width/10+ini_x_point+(margin+grid_width)*board_type)/2, ini_y_point+grid_width/10*length-5));
+        convex.setPoint(4,Vector2f(ini_x_point+(margin+grid_width)*board_type, ini_y_point+grid_width/10*length-grid_width/20-5));
+    }
+    if(orientation==3)
+    {
+        convex.setPoint(0,Vector2f(ini_x_point+(margin+grid_width)*board_type, ini_y_point));
+        convex.setPoint(1,Vector2f(ini_x_point+(margin+grid_width)*board_type+grid_width/10-5.0, ini_y_point));
+        convex.setPoint(2,Vector2f(ini_x_point+(margin+grid_width)*board_type+grid_width/10-5.0, ini_y_point+grid_width/10*length-grid_width/20-5));
+        convex.setPoint(3,Vector2f((ini_x_point+(margin+grid_width)*board_type+grid_width/10+ini_x_point+(margin+grid_width)*board_type)/2, ini_y_point+grid_width/10*length-5));
+        convex.setPoint(4,Vector2f(ini_x_point+(margin+grid_width)*board_type, ini_y_point+grid_width/10*length-grid_width/20-5));
+    }
+    if(orientation==4)
+    {
+        convex.setPoint(0,Vector2f(ini_x_point+(margin+grid_width)*board_type, ini_y_point));
+        convex.setPoint(1,Vector2f(ini_x_point+(margin+grid_width)*board_type+grid_width/10-5.0, ini_y_point));
+        convex.setPoint(2,Vector2f(ini_x_point+(margin+grid_width)*board_type+grid_width/10-5.0, ini_y_point+grid_width/10*length-grid_width/20-5));
+        convex.setPoint(3,Vector2f((ini_x_point+(margin+grid_width)*board_type+grid_width/10+ini_x_point+(margin+grid_width)*board_type)/2, ini_y_point+grid_width/10*length-5));
+        convex.setPoint(4,Vector2f(ini_x_point+(margin+grid_width)*board_type, ini_y_point+grid_width/10*length-grid_width/20-5));
+    }
+
+    convex.setFillColor(Color::Green);
 
     window.draw(convex);
 }
@@ -77,7 +116,8 @@ void show_grid()
         draw_gridlines(margin, margin, grid);
         draw_gridlines(grid_width + 2 * margin, margin, grid);
 
-        //show_battleship();
+        show_battleship(0,6,6,3,3);
+        show_battleship(0,4,4,3,2);
 
         window.display();
         window.clear(Color::Blue);
@@ -88,5 +128,5 @@ void show_grid()
 int main()
 {
     show_grid();
-    cout<<"this point is being passed"<<endl;
 }
+
