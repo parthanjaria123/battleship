@@ -27,18 +27,17 @@ void show_battleship(/*int x_coordinate, int y_coordinate*/)
     window.draw(convex);
 }
 
-void draw_gridlines(float x, float y)
+void draw_gridlines(float x, float y, RectangleShape g[10][10])
 {
-
     for(int i=0;i<10;i++){
         for(int j=0;j<10;j++){
-            grid[i][j].setSize(cellSize);
-            grid[i][j].setOutlineColor(Color::Black);
-            grid[i][j].setOutlineThickness(5.0f);
+            g[i][j].setSize(cellSize);
+            g[i][j].setOutlineColor(Color::Black);
+            g[i][j].setOutlineThickness(5.0f);
 
-            grid[i][j].setPosition(i*cellSize.x + x, j*cellSize.y + y);
+            g[i][j].setPosition(i*cellSize.x + x, j*cellSize.y + y);
 
-            window.draw(grid[i][j]);
+            window.draw(g[i][j]);
         }
     }
 }
@@ -75,8 +74,8 @@ void show_grid()
 
         display_turn(1);
 
-        draw_gridlines(margin, margin);
-        draw_gridlines(grid_width + 2 * margin, margin);
+        draw_gridlines(margin, margin, grid);
+        draw_gridlines(grid_width + 2 * margin, margin, grid);
 
         //show_battleship();
 
