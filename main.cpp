@@ -42,6 +42,25 @@ void draw_gridlines(float x, float y)
     }
 }
 
+/*
+status is 0: player turn, or 1:opponent turn
+*/
+void display_turn(int status)
+{
+    string turn;
+    if(status)
+        turn = "Not Your Turn";
+    else
+        turn = "Your Turn";
+
+    Font font;
+    if(!font.loadFromFile("Lato-Medium.ttf"))
+        return;
+    Text text(turn, font, 50);
+    text.setPosition(window_width / 2 - text.getLocalBounds().width / 2, margin / 2 - text.getLocalBounds().height / 2);
+    window.draw(text);
+}
+
 void show_grid()
 {
     while(window.isOpen())
@@ -53,7 +72,7 @@ void show_grid()
                 window.close();
         }
 
-
+        display_turn(1);
 
         draw_gridlines(margin, margin);
         draw_gridlines(grid_width + 2 * margin, margin);
@@ -61,7 +80,7 @@ void show_grid()
         //show_battleship();
 
         window.display();
-        window.clear(Color::Cyan);
+        window.clear(Color::Blue);
     }
 
 }
