@@ -237,7 +237,7 @@ void show_graphics_grid()
                 {
                     vec2d shot;
                     shot.x = grid_X, shot.y = grid_Y;
-                    update(&p2, shot);
+                    update(&p2, &p1, shot);
 
                     vector<vec2d> cpu_shots;
                     for(int i = 0; i < 10; i++)
@@ -253,7 +253,7 @@ void show_graphics_grid()
 
                     vec2d selected = cpu_shots[rand() % cpu_shots.size()];
                     cout << selected.x << ' ' << selected.y << endl;
-                    update(&p1, selected);
+                    update(&p1, &p2, selected);
 
                     point1 = make_pair(grid_X, grid_Y);
 
