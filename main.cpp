@@ -45,30 +45,6 @@ int sgn(int x)
         return -1;
 }
 
-void show_battleship(battleship* bs)
-{
-    // int px = bs->pos.x * cellSize.x + margin, py = bs->pos.y * cellSize.y + margin;
-
-    // ConvexShape convex;
-    // convex.setPointCount(5);
-    // convex.setPoint(0,Vector2f(px, py));
-    // convex.setPoint(1,Vector2f(px + bs->length * cellSize.x - 5, py));
-    // convex.setPoint(2,Vector2f(px + bs->length * cellSize.x - 5, py + cellSize.y - 5));
-    // convex.setPoint(3,Vector2f(px, py + cellSize.y - 5));
-
-    // convex.setFillColor(Color(0, 0, 0));
-
-    // window.draw(convex);
-
-    for(int i = 0; i < bs->length; i++)
-    {
-        int nx = bs->pos.x + i * bs->dir.x;
-        int ny = bs->pos.y + i * bs->dir.y;
-
-        graphics_grid[nx][ny].setFillColor(Color::Black);
-    }
-}
-
 void draw_graphics_gridlines(float x, float y, RectangleShape g[10][10])
 {
     for(int i = 0; i < 10; i++){
